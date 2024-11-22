@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>休暇申請</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        form { max-width: 300px; margin: auto; }
+        input, textarea { width: 100%; margin: 10px 0; padding: 10px; }
+        button { padding: 10px 20px; background: #0078D4; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>休暇申請フォーム</h1>
+    <form id="leaveForm">
+        <input type="text" name="名前" placeholder="名前" required>
+        <input type="text" name="内容" placeholder="内容" required>
+        <textarea name="備考" placeholder="備考（任意）"></textarea>
+        <button type="submit">送信</button>
+    </form>
+    <script>
+        const form = document.getElementById('leaveForm');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            const response = await fetch('/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (response.ok) {
+                alert('申請が送信されました！');
+            } else {
+                alert('送信に失敗しました。もう一度お試しください。');
+            }
+        });
+    </script>
+</body>
+</html>
