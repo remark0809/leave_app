@@ -23,7 +23,7 @@ def home():
         </style>
     </head>
     <body>
-        <h1>休暇申請フォーム</h1>
+        <h1>UXD休暇申請フォーム</h1>
         <form id="leaveForm">
             <input type="text" name="名前" placeholder="名前" required>
             <input type="text" name="内容" placeholder="内容" required>
